@@ -17,6 +17,7 @@ class adapterRecview (private val listWayang: ArrayList<wayang>) : RecyclerView
 
     interface OnItemClickCallback {
         fun onItemClicked(data: wayang)
+        fun delData(pos: Int)
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,6 +25,7 @@ class adapterRecview (private val listWayang: ArrayList<wayang>) : RecyclerView
         var _karakterWayang = itemView.findViewById<TextView>(R.id.karakterWayang)
         var _deskripsiWayang = itemView.findViewById<TextView>(R.id.deskripsiWayang)
         var _gambarWayang = itemView.findViewById<ImageView>(R.id.gambarWayang)
+        var _btnHapus = itemView.findViewById<TextView>(R.id._btnHapus)
 
     }
 
@@ -50,6 +52,10 @@ class adapterRecview (private val listWayang: ArrayList<wayang>) : RecyclerView
 
         holder._gambarWayang.setOnClickListener{
             onItemClickCallback.onItemClicked(listWayang[holder.adapterPosition])
+        }
+
+        holder._btnHapus.setOnClickListener{
+            onItemClickCallback.delData(position)
         }
     }
 
